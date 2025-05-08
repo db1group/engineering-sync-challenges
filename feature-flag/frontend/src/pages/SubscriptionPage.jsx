@@ -27,7 +27,7 @@ function SubscriptionPage() {
 
       if (!nome?.valid || !email?.valid || !senha?.valid) return;
 
-      await axios.post('/users', {
+      await axios.post('/api/users', {
         name: nome.value,
         email: email.value,
         password: senha.value,

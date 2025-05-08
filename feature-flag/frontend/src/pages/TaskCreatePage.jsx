@@ -65,7 +65,7 @@ function TaskCreatePage() {
 
       if (taskId) {
         // editando
-        await axios.patch(`/tasks/${taskId}`, {
+        await axios.patch(`/api/tasks/${taskId}`, {
           title: titulo.value,
         });
         notification.success({
@@ -73,7 +73,7 @@ function TaskCreatePage() {
         });
       } else {
         // cadastrando
-        await axios.post('/tasks', {
+        await axios.post('/api/tasks', {
           title: titulo.value,
         });
         notification.success({

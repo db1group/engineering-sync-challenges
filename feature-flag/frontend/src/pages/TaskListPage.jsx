@@ -20,7 +20,7 @@ function TaskListPage() {
     try {
       setLoading(true);
 
-      const response = await axios.get('/tasks');
+      const response = await axios.get('/api/tasks');
 
       setTasks(response.data);
     } catch (error) {
@@ -62,7 +62,7 @@ function TaskListPage() {
     try {
       setLoading(true);
 
-      await axios.delete(`/tasks/${taskId}`);
+      await axios.delete(`/api/tasks/${taskId}`);
 
       await requestTasks();
     } catch (error) {

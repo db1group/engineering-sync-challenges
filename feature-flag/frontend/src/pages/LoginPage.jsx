@@ -28,7 +28,7 @@ function LoginPage() {
 
       if (!email?.valid || !senha?.valid) return;
 
-      const response = await axios.post('/users/login', {
+      const response = await axios.post('/api/users/login', {
         email: email.value,
         password: senha.value,
       });
