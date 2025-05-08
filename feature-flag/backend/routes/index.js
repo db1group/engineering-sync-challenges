@@ -1,5 +1,8 @@
 const express = require('express');
+
 const sequelize = require('../database/sequelize');
+
+const featureFlagProvider = require('../infra/feature-flag.provider');
 
 const router = express.Router();
 
@@ -14,6 +17,13 @@ router.get('/', (req, res) => {
  * container caso a aplicação não responda corretamente.
  */
 router.get('/healthcheck', async (req, res) => {
+  const showWelcomeMessage = await featureFlagProvider.getBooleanValue('welcome-message', false);
+  if (showWelcomeMessage) {
+    res.send('Express + TypeScript + OpenFeature Server');
+  } else {
+    res.send('Express + TypeScript Server');
+    res.send('Express + TypeScript Server');
+  }
   try {
     await sequelize.authenticate();
     res.status(204).send();

@@ -9,3 +9,11 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql-db:/var/lib/mysql
+
+  flagd:
+    image: ghcr.io/open-feature/flagd:latest
+    command: start --uri file:/etc/flagd/flags.flagd.json
+    ports:
+      - "8013:8013"
+    volumes:
+      - ./:/etc/flagd/
