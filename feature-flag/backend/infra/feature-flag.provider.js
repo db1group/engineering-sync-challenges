@@ -4,7 +4,9 @@ const { FlagdProvider } = require('@openfeature/flagd-provider');
 
 class FeatureFlagProvider {
   constructor() {
-    OpenFeature.setProvider(new FlagdProvider());
+    OpenFeature.setProvider(new FlagdProvider({
+      port: 8013,
+    }));
     this.client = OpenFeature.getClient();
   }
 
@@ -13,4 +15,4 @@ class FeatureFlagProvider {
   }
 }
 
-module.exports = new FeatureFlagProvider();
+module.exports = FeatureFlagProvider;

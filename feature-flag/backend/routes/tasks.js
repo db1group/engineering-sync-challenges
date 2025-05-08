@@ -7,6 +7,9 @@ const {
   validateCreateTask, validateUpdateTask,
 } = require('../validators/tasks');
 const Task = require('../models/Task');
+const FeatureFlagProvider = require('../infra/feature-flag.provider');
+
+const featureFlagProvider = new FeatureFlagProvider();
 
 const router = express.Router();
 
@@ -18,6 +21,13 @@ router.post(
   middlewareAuthentication,
   validateCreateTask,
   async (req, res) => {
+    const isAvaiableFeature = await featureFlagProvider.getBooleanValue('create-tasks', false);
+
+    if (!isAvaiableFeature) {
+      res.status(404).send('Feature não disponível.');
+      return;
+    }
+
     if (validationResultCheck(req, res)) {
       return;
     }
@@ -48,6 +58,13 @@ router.get(
   '/',
   middlewareAuthentication,
   async (req, res) => {
+    const isAvaiableFeature = await featureFlagProvider.getBooleanValue('show-tasks', false);
+
+    if (!isAvaiableFeature) {
+      res.status(404).send('Feature não disponível.');
+      return;
+    }
+
     try {
       const { loggedUser, query } = req;
 

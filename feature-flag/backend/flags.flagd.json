@@ -7,6 +7,22 @@
       },
       "state": "ENABLED",
       "defaultVariant": "on"
+    },
+    "show-tasks": {
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "state": "ENABLED",
+      "defaultVariant": "off"
+    },
+    "create-tasks": {
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "state": "ENABLED",
+      "defaultVariant": "off"
     }
   }
 }
